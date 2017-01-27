@@ -295,6 +295,7 @@ namespace AgapeApp
             que_6.Checked = false;
             que_7.Checked = false;
             que_8.Checked = false;
+            hiddenLabel.ResetText();
         }
         #endregion
         #region Set up Data for Edit
@@ -378,24 +379,23 @@ namespace AgapeApp
 
         private void btn_Delete_Click(object sender, EventArgs e)
         {
-            try
-            {
-                MessageBox.Show($"Do you want to delete the Record of {txt_First_Name.Text}", " Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-                string queryData = string.Format($@"Delete from Question where discipleID = {hiddenLabel.Text} " );
-                string queryData2 = string.Format($@"Delete from Disciple where discipleID = {hiddenLabel.Text}  ");
-                OleDbCommand cmd = new OleDbCommand(queryData, conn);
-                cmd.ExecuteNonQuery();
-                OleDbCommand cmd2 = new OleDbCommand(queryData2, conn);
-                cmd2.ExecuteNonQuery();
-                ClearData();
-                show_Data();
-                return;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            } 
-                                      
+           try
+                {
+                    MessageBox.Show($"Do you want to delete the Record of {txt_First_Name.Text}", " Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                    string queryData = string.Format($@"Delete from Question where discipleID = {hiddenLabel.Text} ");
+                    string queryData2 = string.Format($@"Delete from Disciple where discipleID = {hiddenLabel.Text}  ");
+                    OleDbCommand cmd = new OleDbCommand(queryData, conn);
+                    cmd.ExecuteNonQuery();
+                    OleDbCommand cmd2 = new OleDbCommand(queryData2, conn);
+                    cmd2.ExecuteNonQuery();
+                    ClearData();
+                    show_Data();
+                    return;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message +" No Disciple is Selected", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }                      
         }
         private bool isDisciplePresent()
         {
