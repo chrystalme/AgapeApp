@@ -71,6 +71,7 @@ namespace AgapeApp
             string lname = null;
             string mentor = null;
             string dept = null;
+           
             if (string.IsNullOrEmpty(txt_First_Name.Text))
             {
                 MessageBox.Show("First Name cannot be empty ", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -112,7 +113,10 @@ namespace AgapeApp
                 if (main_Panel.Enabled == false)
                 {
                     MessageBox.Show("Click on the New button to create Record");
-                }
+                } 
+                if(discipleIsPresent()){
+                MessageBox.Show("Disciple Data already exist.", "Notice", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
                 else
                 {
 
@@ -399,7 +403,7 @@ namespace AgapeApp
         }
         private bool isDisciplePresent()
         {
-            string queryData = string.Format($@"Select 1 from Disciple 
+            string queryData = string.Format($@"Select 1 from Disciple join Question on Disciple.DiscipleID = Question.DiscipleID 
                                                 where [First Name] like '{txt_First_Name.Text.Trim()}'
                                                 and [Last Name] like {txt_Last_Name.Text.Trim()} 
                                                 and [Mentor] like {txt_Mentor.Text.Trim()}");
