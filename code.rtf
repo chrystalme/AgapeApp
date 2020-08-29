@@ -1,0 +1,13 @@
+
+                if (isDisciplePresent())
+                {
+                    string questionInsertSql = string.Format($@"INSERT INTO Question([Name], [Month], [Date],[Believer],[Meets at least once a week],
+                                                        [Uses Life Agape Materials], [Have Met at least 8 times in the past 3 months],[Has First Disciple],
+                                                        [First Disciple shares],[Has Second Disciple], [Second Disciple Shares], [DiscipleID] )
+                                            VALUES ('{fname}', '{cmb_Month.Text}', '{lbl_Date.Text}', {que_1.Checked},
+                                                    {que_2.Checked}, {que_3.Checked}, {que_4.Checked}, {que_5.Checked},
+                                                    {que_6.Checked}, {que_7.Checked}, {que_8.Checked}, {hiddenLabel.Text})");
+                  OleDbCommand  cmd = new OleDbCommand(questionInsertSql, conn);
+                    cmd.ExecuteNonQuery();
+                }else
+                {
